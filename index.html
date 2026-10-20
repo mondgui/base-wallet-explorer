@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Base wallet explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Literata:opsz,wght@7..72,560;7..72,650&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Base · read only</p>
+      <h1>Wallet explorer</h1>
+      <p class="lede">
+        Paste an address to see its ETH, its USDC, and its recent USDC transfers.
+        This page only reads the chain. It cannot move funds.
+      </p>
+
+      <form id="lookup">
+        <label for="address">Address</label>
+        <div class="row">
+          <input
+            id="address"
+            name="address"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="0x…"
+            required
+          />
+          <button id="submit" type="submit">Look up</button>
+        </div>
+        <div class="examples">
+          <button type="button" data-example="sample">Sample wallet</button>
+          <button type="button" data-example="empty">Empty wallet</button>
+        </div>
+        <p id="form-error" role="alert" hidden></p>
+      </form>
+
+      <p id="status" role="status" hidden></p>
+
+      <section id="result" class="result" hidden>
+        <div class="result-head">
+          <div>
+            <p class="label">Address</p>
+            <p id="result-address" class="mono"></p>
+          </div>
+          <a id="basescan" class="basescan" href="" target="_blank" rel="noreferrer">Open on BaseScan</a>
+        </div>
+        <p id="as-of" class="as-of"></p>
+        <div class="balances">
+          <article>
+            <p class="label">ETH</p>
+            <p id="eth" class="amount"></p>
+          </article>
+          <article>
+            <p class="label">USDC</p>
+            <p id="usdc" class="amount"></p>
+          </article>
+        </div>
+        <h2>Recent USDC transfers</h2>
+        <p id="window"></p>
+        <p id="transfers-empty" class="empty" hidden></p>
+        <ul id="transfers" class="transfers"></ul>
+      </section>
+
+      <footer>
+        <p>Read only. This page never asks for a seed phrase or a private key.</p>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
